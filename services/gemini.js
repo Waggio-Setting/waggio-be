@@ -1,5 +1,7 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import * as dotenv from 'dotenv';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+dotenv.config();
 
 // 🔐 API 키는 .env에서 가져오기  #수정필요
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -41,13 +43,29 @@ Full Name, SIN, Pay Date, Employment Type, Hourly Rate, Hours Worked, Salary, Va
 ]
 `;
 
-export async function getPayrollSummaryFromGemini(csvText) {
-  const fullPrompt = `${prompt}\n\nCSV 데이터:\n${csvText}`;
+// export async function getPayrollSummaryFromGemini(csvText) {
+//   const fullPrompt = `${prompt}\n\nCSV 데이터:\n${csvText}`;
 
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+//   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-  const result = await model.generateContent(fullPrompt);
-  const response = result.response;
+//   const result = await model.generateContent(fullPrompt);
+//   const response = result.response;
 
-  return response.text(); // JSON 형태 문자열
+//   return response.text(); // JSON 형태 문자열
+// }
+
+
+//테스트
+async function run() {
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-pro-latest"
+  });
+
+  const result = await model.generateContent("Hello from Gemini!");
+  const text = result.response.text();
+  
+  console.log(text);
 }
+
+run();
+
