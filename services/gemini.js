@@ -58,8 +58,9 @@ Full Name, SIN, Pay Date, Employment Type, Hourly Rate, Hours Worked, Salary, Va
 //테스트
 async function run() {
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-pro-latest"
-  });
+  model: "gemini-1.5-flash"
+});
+
 
   const result = await model.generateContent("Hello from Gemini!");
   const text = result.response.text();
