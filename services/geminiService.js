@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import * as dotenv from 'dotenv';
 
 // 🔐 API 키는 .env에서 가져오기  #수정필요
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
